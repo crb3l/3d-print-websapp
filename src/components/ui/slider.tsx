@@ -18,13 +18,13 @@ const Slider: React.FC<SliderProps> = ({ value, onChange, min = 1, max = 10, ste
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="w-full cursor-pointer accent-orange-500"
+        className="w-full cursor-pointer accent-accent"
       />
-      <div className="text-center text-sm text-gray-600 mt-2">
-        Quantity: <span className="font-semibold">{value}</span>
-      </div>
+      {/* <div className="text-center text-sm text-gray-600 mt-2">
+        Quantity: <span className="font-semibold">{value} %</span>
+      </div> */}
     </div>
   );
 };
 
-export {Slider};
+export { Slider };

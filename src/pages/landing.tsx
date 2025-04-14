@@ -18,7 +18,7 @@ const LandingPage = () => {
             prints delivered at your doorstep.
           </p>
           <Link to="/print">
-            <Button size="lg" className="gap-2">
+            <Button variant="default" size="lg" className="gap-2">
               Start Your Print <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
