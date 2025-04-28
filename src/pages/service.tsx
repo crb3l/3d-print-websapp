@@ -218,11 +218,12 @@ const PriceCalculator: React.FC<PriceCalculatorProps> = ({ volume, quantity, inf
             </div>
 
           )}
-          {isVolumePresent ? (<div className="flex justify-between pt-2 border-t">
+          {isVolumeMissing ? (<div className="flex justify-between pt-2 border-t">
             <span className="text-base font-semibold">Total (estimation):</span>
             <span className="text-base font-semibold">-.-- RON</span>
           </div>)
-            : isSpecialBatch ? (<div className="flex justify-between pt-2 border-t">
+            :
+            isVolumeMissing ? (<div className="flex justify-between pt-2 border-t">
               <span className="text-base font-semibold">Total (estimation):</span>
               <span className="text-base font-semibold">Please{' '} <a href="/contact" className="underline text-primary hover:highlight/80" >contact sales</a>{''} for an estimation.</span>
             </div>)

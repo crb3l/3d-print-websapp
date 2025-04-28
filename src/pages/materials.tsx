@@ -20,9 +20,9 @@ const Materials = () => {
   return (
     <div className="container mx-auto px-4 py-20">
       <h1 className="text-5xl font-bold mb-6">Materials</h1>
-      <p className="text-xl text-slate-600 mb-8 max-w-2xl">
-        Learn more about the different materials we offer for 3D printing and their best use cases.
-      </p>
+      <p className="text-xl text-slate-600 mb-3">
+        Learn more about the different materials we offer for 3D printing using Fused Deposition Modeling (FDM).</p>
+      <p className="text-xl text-slate-600 mb-8">Fused Deposition Modeling (FDM) is the most common 3D printing technology, where objects are built layer by layer using thermoplastic filaments. It’s cost-effective, versatile, and ideal for prototyping, functional parts, and custom objects in a wide range of materials.</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {materials.map((material) => (
           <Card key={material.name}>
