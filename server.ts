@@ -23,7 +23,6 @@ app.get('/api/send-email', async (req: Request, res: Response) => {
       subject: 'New Contact Form Message',
       react: OrderEmail()
     });
-    console.log(process.env.RESEND_API_KEY)
     res.status(200).json({ success: true, data: response });
   } catch (error: any) {
     console.error('Email error:', error);

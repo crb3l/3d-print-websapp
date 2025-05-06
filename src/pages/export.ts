@@ -7,3 +7,5 @@ export { default as About } from './about';
 export { default as Privacy } from './privacy';
 export { default as Terms } from './terms';
 export { default as Materials } from './materials';
+export { default as Signin } from './auth/signin';
+export { default as Signup } from './auth/signup';

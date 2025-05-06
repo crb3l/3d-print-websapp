@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { LandingPage, PrintService, Contact, About, Terms, Privacy, Materials } from './pages/export';
+import { LandingPage, PrintService, Contact, About, Terms, Privacy, Materials, Signup, Signin } from './pages/export';
 import ShopRedirect from './api/shopCall';
 
 
@@ -40,6 +40,8 @@ const App = () => {
               {<Route path="/privacy-policy" element={<Privacy />} />}
               {<Route path="/terms-of-service" element={<Terms />} />}
               {<Route path="/shop" element={<ShopRedirect />} />}
+              {<Route path="/signin" element={<Signin />} />}
+              {<Route path="/signup" element={<Signup />} />}
               {/* {<Route path="/print-cart" element={<PrintCartPage />} />}
               {<Route path="/print-checkout/:checkoutId" element={<PrintCheckoutPage />} />} */}
             </Routes>
