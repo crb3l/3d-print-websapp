@@ -4,7 +4,7 @@ import OrderEmail from './src/components/emails/order';
 import dotenv from 'dotenv';
 
 // Load environment variables
-dotenv.config({ path: '.env.local' });
+// dotenv.config({ path: '.env.local' });
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -13,7 +13,7 @@ const port = process.env.PORT || 3001;
 app.use(express.json());
 
 // Email endpoint
-app.get('/api/send-email', async (req: Request, res: Response) => {
+app.post('/api/send-email', async (req: Request, res: Response) => {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY2 as string)
     

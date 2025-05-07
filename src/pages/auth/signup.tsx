@@ -1,45 +1,10 @@
-// import React from 'react'
 
-// const Signup = () => {
-
-//     function handleChange(event){
-
-//     }
-
-//     return (
-//         <div>
-//             <form>
-//                 <input
-//                     placeholder='Username'
-//                     name='username'
-//                     onChange={handleChange}
-//                 />
-//                 <input
-//                     placeholder='Email'
-//                     name='email'
-//                     onChange={handleChange}
-//                 />
-//                 <input
-//                     placeholder='Password'
-//                     name='password'
-//                     onChange={handleChange}
-//                 />
-//                 <input
-//                     placeholder='Confirm Password'
-//                     name='passConf'
-//                     onChange={handleChange}
-//                 />
-//             </form>
-//         </div>
-//     )
-// }
-
-// export default Signup
 
 import React, { useState } from 'react';
-// import { supabase } from '@/utils/supabaseClient'; // Adjust path as needed
+import supabase from '@/utils/supabase'; // Adjust path as needed
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const Signup = () => {
     const navigate = useNavigate();
@@ -65,7 +30,7 @@ const Signup = () => {
             return;
         }
 
-        const { error: signUpError } = await supabase.auth.signUp({
+        const { data, error: signUpError } = await supabase.auth.signUp({
             email,
             password,
             options: {
@@ -146,6 +111,12 @@ const Signup = () => {
                 />
 
                 <Button size="lg" className="w-full">Create Account</Button>
+                <p className="mt-4 text-center text-slate-600">
+                    Already have an account?{' '}
+                    <Link to="/signin" className="text-500 hover:underline">
+                        Sign in here!
+                    </Link>
+                </p>
             </form>
         </div>
     );

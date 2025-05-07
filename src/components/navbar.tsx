@@ -1,8 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
+import supabase from '@/utils/supabase';
 
 const Navbar = () => {
+
+  const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const { data, error } = await supabase.auth.getUser();
+      if (error) {
+        console.error('Error fetching user:', error);
+      } else {
+        setUser(data.user);
+      }
+      setLoading(false);
+    };
+
+    fetchUser();
+  }, []);
+
+
   return (
     <nav className=" w-full py-4 bg-slate-100">
       <div className="mx-auto pl-10 pr-10 py-3">
@@ -13,6 +33,18 @@ const Navbar = () => {
           </Link>
 
           <div className="space-x-4">
+
+            {/* {loading ? (
+              <Button variant="default" disabled>Loading...</Button>
+            ) : user ? (
+              <Link to="/print">
+                <Button variant="ghost">Start Printing</Button>
+              </Link>
+            ) : (
+              <Link to="/signin">
+                <Button variant="ghost">Start Printing</Button>
+              </Link>
+            )} */}
 
             <Link to="/print">
               <Button variant="ghost"  >Start Printing</Button>
@@ -29,9 +61,17 @@ const Navbar = () => {
             <Link to="/shop">
               <Button variant="ghost"   >Shop now</Button>
             </Link>
-            <Link to="/signup">
-              <Button variant="default"   >Sign Up</Button>
-            </Link>
+            {loading ? (
+              <Button variant="default" disabled>Loading...</Button>
+            ) : user ? (
+              <Link to="/account">
+                <Button variant="default">Account</Button>
+              </Link>
+            ) : (
+              <Link to="/signin">
+                <Button variant="default">Sign In</Button>
+              </Link>
+            )}
           </div>
         </div>
       </div>

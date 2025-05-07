@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-// import { supabase } from '@/utils/supabaseClient';
+import supabase from '@/utils/supabase';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom'
 
 const Signin = () => {
     const navigate = useNavigate();
@@ -25,19 +26,32 @@ const Signin = () => {
                 <input
                     type="email"
                     placeholder="Email"
-                    className="w-full mb-4 px-4 py-2 border rounded"
+                    className="w-full bg-transparent mb-4 px-4 py-2 border rounded"
                     value={form.email}
                     onChange={e => setForm({ ...form, email: e.target.value })}
                 />
                 <input
                     type="password"
                     placeholder="Password"
-                    className="w-full mb-6 px-4 py-2 border rounded"
+                    className="w-full bg-transparent mb-6 px-4 py-2 border rounded"
                     value={form.password}
                     onChange={e => setForm({ ...form, password: e.target.value })}
                 />
                 <Button size="lg" className="w-full">Log In</Button>
+                <p className="mt-4 text-center text-slate-600">
+                    Don&apos;t have an account?{' '}
+                    <Link to="/signup" className="text-500 hover:underline">
+                        Create one here!
+                    </Link>
+                </p>
+                <p className="mt-2 text-center text-slate-600">
+                    Forgot your password?{' '}
+                    <Link to="/forgot-password" className="text-500 hover:underline">
+                        Reset by pressing here!
+                    </Link>
+                </p>
             </form>
+
         </div>
     );
 };

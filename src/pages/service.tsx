@@ -5,11 +5,11 @@ import { Canvas, useThree, useFrame } from '@react-three/fiber';
 import { Grid, OrbitControls, PresentationControls, Stage, Environment, AccumulativeShadows, RandomizedLight, Center } from '@react-three/drei';
 import * as THREE from 'three';
 import { Button } from "@/components/ui/button";
-import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 const colorMap = {
   white: '#ffffff', black: '#000000', gray: '#808080', red: '#ff0000',
@@ -246,6 +246,7 @@ const PrintService: React.FC = () => {
   const [infill, setInfill] = useState("15");
   const [quantity_s, setQuantity_s] = useState("1");
   const availableColors = materialColorMap[material] || [];
+  const [message, setMessage] = useState("");
 
   const handleFileChange = useCallback(async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -318,6 +319,16 @@ const PrintService: React.FC = () => {
             <Input id="stl-file" type="file" accept=".stl" onChange={handleFileChange} className="mt-1 mb-3" />
             <ModelViewer geometry={modelGeometry} color={color} />
           </CardContent>
+          <div className="mt-8 mx-6 mb-2 space-y-2">
+            <Label htmlFor="order-message">Order Message (Optional)</Label>
+            <Textarea
+              id="order-message"
+              placeholder=" Add a note or special instructions for this order..."
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              className="w-full bg-gray-100 rounded"
+            />
+          </div>
         </Card>
         <div>
           <Card>
