@@ -12,7 +12,6 @@ import {
     Section,
     Text,
     Heading,
-    Button,
 } from '@react-email/components';
 import * as React from 'react';
 
@@ -31,54 +30,56 @@ interface OrderDetails {
     fileName: string;
 }
 
-export const CustomerOrderEmail = ({
+export const AdminOrderEmail = ({
     orderNumber,
     userName,
+    userEmail,
     material,
     quality,
     color,
     infill,
     quantity,
+    volume,
     totalPrice,
+    message,
     fileName,
 }: OrderDetails) => {
-    const websiteUrl = 'https://your-domain.com';
-
     return (
         <Html>
             <Head />
-            <Preview>Your 3D Print Order Confirmation: {orderNumber}</Preview>
+            <Preview>New 3D Print Order: {orderNumber}</Preview>
             <Body style={main}>
                 <Container style={container}>
-                    <Section style={logoContainer}>
-                        {/* Replace with your logo */}
-                        <Text style={logoText}>Your 3D Printing Service</Text>
+                    <Section>
+                        <Heading as="h1">New 3D Print Order</Heading>
+                        <Text style={orderNumberStyle}>Order #{orderNumber}</Text>
                     </Section>
 
                     <Section style={section}>
-                        <Heading as="h1" style={heading}>Thanks for your order, {userName}!</Heading>
-                        <Text style={paragraph}>
-                            We've received your 3D printing order and are reviewing it now.
-                            We'll start processing it as soon as possible.
-                        </Text>
-                        <Text style={orderNumberStyle}>Order #{orderNumber}</Text>
+                        <Heading as="h2" style={subheading}>Customer Details</Heading>
+                        <Row>
+                            <Column>
+                                <Text style={label}>Name:</Text>
+                            </Column>
+                            <Column>
+                                <Text style={value}>{userName}</Text>
+                            </Column>
+                        </Row>
+                        <Row>
+                            <Column>
+                                <Text style={label}>Email:</Text>
+                            </Column>
+                            <Column>
+                                <Text style={value}>{userEmail}</Text>
+                            </Column>
+                        </Row>
                     </Section>
 
                     <Hr style={hr} />
 
                     <Section style={section}>
-                        <Heading as="h2" style={subheading}>Order Summary</Heading>
-
-                        <Row style={summaryRow}>
-                            <Column>
-                                <Text style={label}>Model:</Text>
-                            </Column>
-                            <Column>
-                                <Text style={value}>{fileName}</Text>
-                            </Column>
-                        </Row>
-
-                        <Row style={summaryRow}>
+                        <Heading as="h2" style={subheading}>Order Specifications</Heading>
+                        <Row>
                             <Column>
                                 <Text style={label}>Material:</Text>
                             </Column>
@@ -86,8 +87,7 @@ export const CustomerOrderEmail = ({
                                 <Text style={value}>{material.toUpperCase()}</Text>
                             </Column>
                         </Row>
-
-                        <Row style={summaryRow}>
+                        <Row>
                             <Column>
                                 <Text style={label}>Quality:</Text>
                             </Column>
@@ -95,8 +95,7 @@ export const CustomerOrderEmail = ({
                                 <Text style={value}>{quality}</Text>
                             </Column>
                         </Row>
-
-                        <Row style={summaryRow}>
+                        <Row>
                             <Column>
                                 <Text style={label}>Color:</Text>
                             </Column>
@@ -104,8 +103,7 @@ export const CustomerOrderEmail = ({
                                 <Text style={value}>{color}</Text>
                             </Column>
                         </Row>
-
-                        <Row style={summaryRow}>
+                        <Row>
                             <Column>
                                 <Text style={label}>Infill:</Text>
                             </Column>
@@ -113,8 +111,7 @@ export const CustomerOrderEmail = ({
                                 <Text style={value}>{infill}</Text>
                             </Column>
                         </Row>
-
-                        <Row style={summaryRow}>
+                        <Row>
                             <Column>
                                 <Text style={label}>Quantity:</Text>
                             </Column>
@@ -122,15 +119,20 @@ export const CustomerOrderEmail = ({
                                 <Text style={value}>{quantity}</Text>
                             </Column>
                         </Row>
-                    </Section>
-
-                    <Section style={priceContainer}>
                         <Row>
                             <Column>
-                                <Text style={priceLabel}>Total:</Text>
+                                <Text style={label}>Model Volume:</Text>
                             </Column>
                             <Column>
-                                <Text style={priceValue}>{totalPrice}</Text>
+                                <Text style={value}>{volume}</Text>
+                            </Column>
+                        </Row>
+                        <Row>
+                            <Column>
+                                <Text style={label}>File name:</Text>
+                            </Column>
+                            <Column>
+                                <Text style={value}>{fileName}</Text>
                             </Column>
                         </Row>
                     </Section>
@@ -138,25 +140,29 @@ export const CustomerOrderEmail = ({
                     <Hr style={hr} />
 
                     <Section style={section}>
-                        <Text style={paragraph}>
-                            We'll contact you once your order is ready. If you have any questions, simply reply to this email.
-                        </Text>
+                        <Heading as="h2" style={subheading}>Price</Heading>
+                        <Row>
+                            <Column>
+                                <Text style={labelTotal}>Total:</Text>
+                            </Column>
+                            <Column>
+                                <Text style={total}>{totalPrice}</Text>
+                            </Column>
+                        </Row>
+                    </Section>
 
-                        <Section style={ctaContainer}>
-                            <Button href={`${websiteUrl}/orders/${orderNumber}`} style={ctaButton}>
-                                View Order Status
-                            </Button>
-                        </Section>
+                    <Hr style={hr} />
+
+                    <Section style={section}>
+                        <Heading as="h2" style={subheading}>Additional Message</Heading>
+                        <Text style={messageStyle}>{message}</Text>
                     </Section>
 
                     <Hr style={hr} />
 
                     <Section style={footer}>
                         <Text style={footerText}>
-                            © {new Date().getFullYear()} Your 3D Printing Service. All rights reserved.
-                        </Text>
-                        <Text style={footerText}>
-                            123 Printing Street, Your City, 12345
+                            This email contains an STL file attachment. Please check the admin dashboard for more details or reply to this email to contact the customer directly.
                         </Text>
                     </Section>
                 </Container>
@@ -178,32 +184,8 @@ const container = {
     maxWidth: '600px',
 };
 
-const logoContainer = {
-    padding: '20px 24px',
-    textAlign: 'center' as const,
-};
-
-const logoText = {
-    fontSize: '24px',
-    fontWeight: 'bold' as const,
-    color: '#4f46e5',
-};
-
 const section = {
     padding: '0 24px',
-};
-
-const heading = {
-    fontSize: '24px',
-    fontWeight: 'bold',
-    color: '#1d2939',
-    margin: '16px 0',
-};
-
-const paragraph = {
-    fontSize: '16px',
-    lineHeight: '24px',
-    color: '#4b5563',
 };
 
 const hr = {
@@ -212,75 +194,61 @@ const hr = {
 };
 
 const subheading = {
-    fontSize: '18px',
+    fontSize: '16px',
     fontWeight: 'bold',
-    color: '#1d2939',
+    color: '#333',
     margin: '16px 0',
-};
-
-const summaryRow = {
-    margin: '8px 0',
 };
 
 const label = {
     fontSize: '14px',
     color: '#667085',
+    margin: '8px 0',
 };
 
 const value = {
     fontSize: '14px',
     color: '#1d2939',
+    margin: '8px 0',
 };
 
-const priceContainer = {
-    padding: '12px 24px',
-    backgroundColor: '#f9fafb',
-    margin: '16px 24px',
-    borderRadius: '4px',
+const labelTotal = {
+    fontSize: '16px',
+    fontWeight: 'bold',
+    color: '#667085',
+    margin: '8px 0',
 };
 
-const priceLabel = {
+const total = {
     fontSize: '16px',
     fontWeight: 'bold',
     color: '#1d2939',
-};
-
-const priceValue = {
-    fontSize: '16px',
-    fontWeight: 'bold',
-    color: '#4f46e5',
+    margin: '8px 0',
 };
 
 const orderNumberStyle = {
     fontSize: '16px',
     color: '#667085',
+    marginTop: '0',
 };
 
-const ctaContainer = {
-    padding: '24px 0',
-    textAlign: 'center' as const,
-};
-
-const ctaButton = {
-    backgroundColor: '#4f46e5',
+const messageStyle = {
+    fontSize: '14px',
+    color: '#1d2939',
+    margin: '8px 0',
+    padding: '12px',
+    backgroundColor: '#f9fafb',
     borderRadius: '4px',
-    color: '#ffffff',
-    fontSize: '16px',
-    fontWeight: 'bold',
-    textDecoration: 'none',
-    textAlign: 'center' as const,
-    padding: '12px 24px',
 };
 
 const footer = {
-    padding: '0 24px 24px',
+    padding: '0 24px',
     textAlign: 'center' as const,
 };
 
 const footerText = {
     fontSize: '12px',
     color: '#667085',
-    margin: '4px 0',
 };
 
-export default CustomerOrderEmail;
+export default AdminOrderEmail;
