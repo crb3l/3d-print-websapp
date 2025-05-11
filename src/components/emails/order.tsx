@@ -83,7 +83,7 @@ export const CustomerOrderEmail = ({
                                 <Text style={label}>Material:</Text>
                             </Column>
                             <Column>
-                                <Text style={value}>{material.toUpperCase()}</Text>
+                                <Text style={value}>{material}</Text>
                             </Column>
                         </Row>
 

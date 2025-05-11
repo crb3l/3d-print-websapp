@@ -19,6 +19,7 @@ interface OrderDetails {
     orderNumber: string;
     userName: string;
     userEmail: string;
+    userAddress: string;
     material: string;
     quality: string;
     color: string;
@@ -34,6 +35,7 @@ export const AdminOrderEmail = ({
     orderNumber,
     userName,
     userEmail,
+    userAddress,
     material,
     quality,
     color,
@@ -67,6 +69,14 @@ export const AdminOrderEmail = ({
                         </Row>
                         <Row>
                             <Column>
+                                <Text style={label}>Address:</Text>
+                            </Column>
+                            <Column>
+                                <Text style={value}>{userAddress}</Text>
+                            </Column>
+                        </Row>
+                        <Row>
+                            <Column>
                                 <Text style={label}>Email:</Text>
                             </Column>
                             <Column>
@@ -84,7 +94,7 @@ export const AdminOrderEmail = ({
                                 <Text style={label}>Material:</Text>
                             </Column>
                             <Column>
-                                <Text style={value}>{material.toUpperCase()}</Text>
+                                <Text style={value}>{material}</Text>
                             </Column>
                         </Row>
                         <Row>

@@ -22,6 +22,9 @@ const ResetPassword = () => {
       if (error) throw error;
 
       setMessage("Password updated successfully!");
+      //log out because i like to. use your new pass to log in you dimwit
+      await supabase.auth.signOut();
+
       navigate("/signin");
     } catch (error) {
       if (error instanceof Error) {
