@@ -162,39 +162,45 @@ import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
-// const axios = require('axios');
 
 // Define __filename and __dirname for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // // Load environment variables
-// dotenv.config({ path: '.env.local' });
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3001;
 
 // Configure file storage
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    const uploadDir = path.join(__dirname, 'uploads');
-    if (!fs.existsSync(uploadDir)) {
-      fs.mkdirSync(uploadDir, { recursive: true });
-    }
-    cb(null, uploadDir);
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-    const ext = path.extname(file.originalname);
-    cb(null, file.fieldname + '-' + uniqueSuffix + ext);
-  }
-});
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     const uploadDir = path.join(__dirname, 'uploads');
+//     if (!fs.existsSync(uploadDir)) {
+//       fs.mkdirSync(uploadDir, { recursive: true });
+//     }
+//     cb(null, uploadDir);
+//   },
+//   filename: function (req, file, cb) {
+//     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+//     const ext = path.extname(file.originalname);
+//     cb(null, file.fieldname + '-' + uniqueSuffix + ext);
+//   }
+// });
+
+// const upload = multer({
+//   storage: storage,
+//   limits: { fileSize: 50 * 1024 * 1024 } // 50MB
+// });
+
+const storage = multer.memoryStorage();
 
 const upload = multer({
   storage: storage,
-  limits: { fileSize: 50 * 1024 * 1024 } // 50MB
+  limits: { fileSize: 50 * 1024 * 1024 }, // 50MB
 });
+
 
 // Middleware
 app.use(express.json());
@@ -218,9 +224,6 @@ app.post('/api/submit-order', upload.single('modelFile'), async (req: MulterRequ
 
     const resend = new Resend(process.env.RESEND_API_KEY as string);
     const adminEmail = process.env.ADMIN_EMAIL as string || 'admin@example.com';
-    // const adminEmail = 'iotheodor@gmail.com';
-
-
 
     const orderDetails = {
       orderNumber: `ORD-${Date.now().toString().slice(-6)}`,
@@ -245,7 +248,8 @@ app.post('/api/submit-order', upload.single('modelFile'), async (req: MulterRequ
         let attachmentContent = [];
         
         if (modelFile) {
-          const fileBuffer = fs.readFileSync(modelFile.path);
+          // const fileBuffer = fs.readFileSync(modelFile.path);
+          const fileBuffer = modelFile.buffer;
 
           const attachmentContent = [{
             filename: modelFile.originalname,

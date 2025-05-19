@@ -101,7 +101,7 @@ const LandingPage = () => {
             {/* Image 3 */}
             <div className="max-auto">
               <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnJydWNpdGtsYjduaDdrNWZ5d3Y5aWV0aHAzNm42ZnJnZDNhNTNkMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o6Zt4j96fDG4XzO0w/giphy.gif" alt="Image 3" className="w-full h-96 object-cover rounded-lg" />
-              <h3 className="text-xl font-semibold mt-4">Printed Items Store</h3>
+              <h3 className="text-xl font-semibold mt-4">Printed Items Store - COMING SOON!11!!1!</h3>
               <p className="text-slate-600">Take a look inside our store filled with printed items. Surely something will catch your eye ;).</p>
             </div>
 

@@ -1031,7 +1031,7 @@ const PrintService: React.FC = () => {
               className="w-full"
               size="lg"
               type="submit"
-              disabled={isSubmitting || !modelFile || !userEmail || !userName}
+              disabled={isSubmitting || !modelFile || !userEmail || !userName || !userAddress}
             >
               {isSubmitting ? 'Processing...' : 'Place Order'}
             </Button>
