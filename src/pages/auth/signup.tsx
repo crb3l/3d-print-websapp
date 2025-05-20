@@ -30,7 +30,7 @@ const Signup = () => {
             return;
         }
 
-        const { data, error: signUpError } = await supabase.auth.signUp({
+        const { /*data,*/ error: signUpError } = await supabase.auth.signUp({
             email,
             password,
             options: {
