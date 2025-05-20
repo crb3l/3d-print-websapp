@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
 import supabase from '@/utils/supabase';
 
 const Navbar = () => {
 
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -20,8 +27,33 @@ const Navbar = () => {
     };
 
     fetchUser();
+
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        if (event === "SIGNED_OUT") {
+          setUser(null);
+        } else if (event === "SIGNED_IN") {
+          setUser(session?.user || null);
+        }
+      }
+    );
+
+    return () => {
+      authListener.subscription.unsubscribe();
+    };
+
   }, []);
 
+  useEffect(() => {
+    if (user) {
+      const sessionTimeout = setTimeout(async () => {
+        console.log("Session expired. Signing out...");
+        await supabase.auth.signOut();
+        navigate("/signin");
+      }, 3600000); // 1 hour
+      return () => clearTimeout(sessionTimeout);
+    }
+  }, [user, navigate]);
 
   return (
     <nav className=" w-full py-4 bg-slate-100">
@@ -61,12 +93,42 @@ const Navbar = () => {
             <Link to="/shop">
               <Button variant="ghost"   >Shop now</Button>
             </Link>
-            {loading ? (
+            {/* {loading ? (
               <Button variant="default" disabled>Loading...</Button>
             ) : user ? (
               <Link to="/account">
                 <Button variant="default">Account</Button>
               </Link>
+            ) : (
+              <Link to="/signin">
+                <Button variant="default">Sign In</Button>
+              </Link>
+            )} */}
+            {loading ? (
+              <Button variant="default" disabled>
+                Loading...
+              </Button>
+            ) : user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="default">
+                    {"| | |"}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={() => navigate("/account")}>
+                    Account
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={async () => {
+                      await supabase.auth.signOut();
+                      navigate("/signin");
+                    }}
+                  >
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             ) : (
               <Link to="/signin">
                 <Button variant="default">Sign In</Button>
