@@ -38,7 +38,7 @@
 // };
 
 // export default Materials;
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Card, CardContent } from '../components/ui/card';
 
 const Materials = () => {

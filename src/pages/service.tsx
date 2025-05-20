@@ -410,8 +410,8 @@
 
 
 import React, { useRef, useEffect, useState, useCallback, Suspense } from 'react';
-import { Canvas, useThree, useFrame } from '@react-three/fiber';
-import { Grid, OrbitControls, PresentationControls, Stage, Environment, AccumulativeShadows, RandomizedLight, Center } from '@react-three/drei';
+import { Canvas, useThree } from '@react-three/fiber';
+import { Grid, OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -743,9 +743,9 @@ const PrintService: React.FC = () => {
     }
   }, []);
 
-  const handleQuantityChange = (value: number) => {
-    setQuantity(value);
-  };
+  // const handleQuantityChange = (value: number) => {
+  //   setQuantity(value);
+  // };
 
   const handlePriceChange = (price: number) => {
     setTotalPrice(price);

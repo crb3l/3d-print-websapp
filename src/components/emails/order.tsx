@@ -5,8 +5,6 @@ import {
     Head,
     Hr,
     Html,
-    Img,
-    Link,
     Preview,
     Row,
     Section,
@@ -14,7 +12,6 @@ import {
     Heading,
     Button,
 } from '@react-email/components';
-import * as React from 'react';
 
 interface OrderDetails {
     orderNumber: string;

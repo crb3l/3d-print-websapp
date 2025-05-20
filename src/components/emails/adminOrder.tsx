@@ -5,15 +5,12 @@ import {
     Head,
     Hr,
     Html,
-    Img,
-    Link,
     Preview,
     Row,
     Section,
     Text,
     Heading,
 } from '@react-email/components';
-import * as React from 'react';
 
 interface OrderDetails {
     orderNumber: string;
