@@ -90,9 +90,9 @@ const Navbar = () => {
             <Link to="/contact">
               <Button variant="ghost"   >Contact</Button>
             </Link>
-            <Link to="/shop">
+            {/* <Link to="/shop">
               <Button variant="ghost"   >Shop now</Button>
-            </Link>
+            </Link> */}
             {/* {loading ? (
               <Button variant="default" disabled>Loading...</Button>
             ) : user ? (
