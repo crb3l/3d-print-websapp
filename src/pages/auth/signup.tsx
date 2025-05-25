@@ -45,7 +45,7 @@ const Signup = () => {
         if (signUpError) {
             setError(signUpError.message);
         } else {
-            navigate('/signin'); // or redirect to sign-in or confirmation page
+            navigate('/signin', { state: { fromSignup: true } }); // or redirect to sign-in and flag fromSignup for confirmationEmail link
         }
     };
 
