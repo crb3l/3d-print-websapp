@@ -15,8 +15,7 @@ const Signin = () => {
         e.preventDefault();
         const { email, password } = form;
 
-        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-        const user = data.user;
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) {
             if (error.message == "Email not confirmed")
                 setShowResend(true);
