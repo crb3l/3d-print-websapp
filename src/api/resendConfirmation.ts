@@ -14,7 +14,7 @@ const resendLimiter = rateLimit({
   keyGenerator: (req: Request) => req.body.email, // Rate limit based on email
 });
 
-router.post('/api/resend-confirmation', resendLimiter, async (req: Request, res: Response): Promise<void> => {
+router.post('/api/resend-confirmation', resendLimiter async (req: Request, res: Response): Promise<void> => {
   const { email } = req.body;
 
   if (!email) {
