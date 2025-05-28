@@ -1,8 +1,8 @@
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { LandingPage, PrintService, Contact, About, Terms, Privacy, Materials, Signup, Signin, ForgotPassword, ResetPassword, Account } from './pages/export';
+import { LandingPage, PrintService, Contact, About, Terms, Privacy, Materials, Signup, Signin, ForgotPassword, ResetPassword, Account, PrintCheckout } from './pages/export';
 import ShopRedirect from './api/shopCall';
-import ProtectedRoute from "@/components/protectedroute";
+// import ProtectedRoute from "@/components/protectedroute"; TODO use when you need to signin to access
 import { createClient } from "@supabase/supabase-js";
 import { SessionContextProvider } from "@supabase/auth-helpers-react";
 
@@ -24,7 +24,12 @@ const Page = styled.div`
   text-align: auto;
   // padding: 2rem;
 `;
-
+// TODO list
+// [ ] pagina detalii/checkout
+// [ ] cart
+// [ ] sign in / register pe checkout
+// [ ] carut
+// [ ] ecommerce
 
 const App = () => {
   const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
@@ -40,7 +45,8 @@ const App = () => {
             <main className=" w-full flex-grow ">
               <Routes>
                 <Route path="/" element={<LandingPage />} />
-                <Route path="/print" element={<ProtectedRoute> <PrintService /> </ProtectedRoute>} />
+                {/* <Route path="/print" element={<ProtectedRoute> <PrintService /> </ProtectedRoute>} /> */}
+                <Route path="/print" element={<PrintService />} />
                 {/* <Route path="/gallery" element={<Gallery />} /> */}
                 {<Route path="/materials" element={<Materials />} />}
                 {<Route path="/contact" element={<Contact />} />}
@@ -53,8 +59,8 @@ const App = () => {
                 {<Route path="/account" element={<Account />} />}
                 {<Route path="/forgot-password" element={<ForgotPassword />} />}
                 {<Route path="/reset-password" element={<ResetPassword />} />}
-                {/* {<Route path="/print-cart" element={<PrintCartPage />} />}
-              {<Route path="/print-checkout/:checkoutId" element={<PrintCheckoutPage />} />} */}
+                {/* {<Route path="/print-cart" element={<PrintCartPage />} />}*/
+                  <Route path="/print-checkout" element={<PrintCheckout />} />}
               </Routes>
             </main>
             <Footer />

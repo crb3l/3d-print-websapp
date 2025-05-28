@@ -12,3 +12,4 @@ export { default as Signup } from './auth/signup';
 export { default as ForgotPassword } from './auth/forgotpass';
 export { default as ResetPassword } from './auth/resetpass';
 export { default as Account } from './account';
+export { default as PrintCheckout } from './printCheckout'
