@@ -1,5 +1,5 @@
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { /*BrowserRouter*/ HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { LandingPage, PrintService, Contact, About, Terms, Privacy, Materials, Signup, Signin, ForgotPassword, ResetPassword, Account, PrintCheckout } from './pages/export';
 import ShopRedirect from './api/shopCall';
 // import ProtectedRoute from "@/components/protectedroute"; TODO use when you need to signin to access

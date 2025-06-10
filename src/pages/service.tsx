@@ -385,7 +385,7 @@ const PrintService: React.FC = () => {
     formData.append('userAddress', userAddress);
 
     try {
-      const response = await fetch('http://treideee.ro/api/submit-order', {
+      const response = await fetch('https://treideee.ro/api/submit-order', {
         method: 'POST',
         body: formData,
       });
