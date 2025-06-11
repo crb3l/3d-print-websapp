@@ -3,8 +3,8 @@ import { Router, Request, Response } from 'express';
 import { Resend } from 'resend';
 import dotenv from 'dotenv';
 import multer from 'multer';
-import CustomerOrderEmail from 'src/components/emails/order';
-import AdminOrderEmail from 'src/components/emails/adminOrder';
+import CustomerOrderEmail from '../emails/order';
+import AdminOrderEmail from '../emails/adminOrder';
 
 dotenv.config();
 
