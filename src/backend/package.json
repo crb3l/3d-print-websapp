@@ -4,9 +4,9 @@
   "main": "server.ts",
   "type": "module",
   "scripts": {
-    "dev": "nodemon server",
+    "dev": "nodemon --exec ts-node src/backend/server.ts",
     "build": "tsc && vite build",
-    "start": "node server"
+    "start": "ts-node src/backend/server.ts"
   },
   "dependencies": {
     "@react-email/components": "^0.0.42",
