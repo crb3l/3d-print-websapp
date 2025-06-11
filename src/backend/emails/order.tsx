@@ -39,7 +39,7 @@ export const CustomerOrderEmail = ({
     totalPrice,
     fileName,
 }: OrderDetails) => {
-    const websiteUrl = 'https://your-domain.com';
+    const websiteUrl = 'https://treideee.ro';
 
     return (
         <Html>
