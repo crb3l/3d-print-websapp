@@ -9,6 +9,9 @@
     "start": "node server"
   },
   "dependencies": {
+      "@supabase/auth-helpers-react": "^0.5.0",
+    "@supabase/supabase-js": "^2.49.4",
+    "@types/multer": "^1.4.12",
     "@types/express": "^5.0.3",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
