@@ -1,5 +1,5 @@
 
-import express/*, { Request, Response }*/ from 'express'; // uncomm when uploading to a dB
+// import express/*, { Request, Response }*/ from 'express'; // uncomm when uploading to a dB
 import dotenv from 'dotenv';
 import cors from 'cors';
 // import multer from 'multer';
@@ -15,6 +15,7 @@ import resendConfirmationRoute from './api/resendConfirmation'
 // // Load environment variables
 dotenv.config();
 
+const express=require("express");
 const app = express();
 const port = process.env.PORT || 3001;
 
