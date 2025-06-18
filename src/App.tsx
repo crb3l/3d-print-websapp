@@ -1,7 +1,7 @@
 
 import { /*BrowserRouter*/ HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { LandingPage, PrintService, Contact, About, Terms, Privacy, Materials, Signup, Signin, ForgotPassword, ResetPassword, Account, PrintCheckout } from './pages/export';
-import ShopRedirect from './backend/api/shopCall';
+// import ShopRedirect from './backend/api/shopCall';
 // import ProtectedRoute from "@/components/protectedroute"; TODO use when you need to signin to access
 import { createClient } from "@supabase/supabase-js";
 import { SessionContextProvider } from "@supabase/auth-helpers-react";
@@ -53,7 +53,7 @@ const App = () => {
                 {<Route path="/about" element={<About />} />}
                 {<Route path="/privacy-policy" element={<Privacy />} />}
                 {<Route path="/terms-of-service" element={<Terms />} />}
-                {<Route path="/shop" element={<ShopRedirect />} />}
+                {/*<Route path="/shop" element={<ShopRedirect />} />*/}
                 {<Route path="/signin" element={<Signin />} />}
                 {<Route path="/signup" element={<Signup />} />}
                 {<Route path="/account" element={<Account />} />}
