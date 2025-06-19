@@ -385,7 +385,7 @@ const PrintService: React.FC = () => {
     formData.append('userAddress', userAddress);
 
     try {
-      const response = await fetch('https://threed-print-websapp-backend.onrender.comapi/submit-order', {
+      const response = await fetch('https://threed-print-websapp-backend.onrender.com/api/submit-order', {
         method: 'POST',
         body: formData,
       });
