@@ -42,14 +42,14 @@ const CartItem: React.FC<CartItemProps> = ({ product, quantity }) => {
             <div className="flex items-center space-x-2">
                 <button
                     onClick={() => handleQuantityChange(quantity - 1)}
-                    className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100"
+                    className="bg-white w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100"
                 >
                     -
                 </button>
                 <span className="w-8 text-center">{quantity}</span>
                 <button
                     onClick={() => handleQuantityChange(quantity + 1)}
-                    className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100"
+                    className="bg-white w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100"
                 >
                     +
                 </button>
@@ -61,7 +61,7 @@ const CartItem: React.FC<CartItemProps> = ({ product, quantity }) => {
                 </p>
                 <button
                     onClick={() => removeItem(product.id)}
-                    className="text-red-500 hover:text-red-700 text-sm"
+                    className="bg-white border-gray-200 border-2 text-red-500 hover:text-red-700 text-sm"
                 >
                     Remove
                 </button>

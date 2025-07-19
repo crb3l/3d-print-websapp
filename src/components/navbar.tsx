@@ -8,12 +8,17 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import supabase from '@/utils/supabase';
+import { useCart } from '@/hooks/useCart';
+import MiniCart from './cart/miniCart';
 
 const Navbar = () => {
 
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const navigate = useNavigate();
+  const { items } = useCart();
+
+  const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -90,9 +95,37 @@ const Navbar = () => {
             <Link to="/contact">
               <Button variant="ghost"   >Contact</Button>
             </Link>
-            {/* <Link to="/shop">
+            <Link to="/shop">
               <Button variant="ghost"   >Shop now</Button>
-            </Link> */}
+            </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="relative">
+                  {/* Shopping Cart Icon */}
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 3h2l.4 2M7 13h10l4-8H5.4m2.6 8L6 18h14a2 2 0 002-2v-8H6l-2-4M6 20v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H8a2 2 0 00-2 2z"
+                    />
+                  </svg>
+                  {totalItems > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                      {totalItems}
+                    </span>
+                  )}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="p-0">
+                <MiniCart />
+              </DropdownMenuContent>
+            </DropdownMenu>
             {/* {loading ? (
               <Button variant="default" disabled>Loading...</Button>
             ) : user ? (

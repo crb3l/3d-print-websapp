@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useCart } from '../../hooks/useCart';
 import CartItem from './cartItem';
+import { Link } from 'react-router-dom';
 
 const Cart: React.FC = () => {
     const { items, getTotalPrice, clearCart } = useCart();
@@ -36,9 +37,11 @@ const Cart: React.FC = () => {
                 <h2 className="text-2xl font-bold mb-6">Shopping Cart</h2>
                 <div className="text-center py-12">
                     <p className="text-gray-500 mb-4">Your cart is empty</p>
-                    <button className="text-blue-600 hover:text-blue-800">
-                        Continue Shopping
-                    </button>
+                    <Link to='/shop'>
+                        <button className="bg-white border-gray-200 border-2 text-primary hover:text-highlight">
+                            Continue Shopping
+                        </button>
+                    </Link>
                 </div>
             </div>
         );
@@ -50,7 +53,7 @@ const Cart: React.FC = () => {
                 <h2 className="text-2xl font-bold">Shopping Cart</h2>
                 <button
                     onClick={clearCart}
-                    className="text-red-500 hover:text-red-700 text-sm"
+                    className="text-red-500 bg-white border-gray-200 border-2 hover:text-red-700 text-sm"
                 >
                     Clear Cart
                 </button>
@@ -71,7 +74,7 @@ const Cart: React.FC = () => {
                     <div className="flex justify-between items-center mb-4">
                         <span className="text-lg font-semibold">Total:</span>
                         <span className="text-2xl font-bold">
-                            {getTotalPrice().toFixed(2)} RON
+                            {getTotalPrice().toFixed(2)} EUR
                         </span>
                     </div>
 

@@ -47,7 +47,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }) => {
                                         <button
                                             key={index}
                                             onClick={() => setSelectedImage(index)}
-                                            className={`w-16 h-16 rounded border-2 ${selectedImage === index ? 'border-blue-500' : 'border-gray-200'
+                                            className={`w-16 h-16 rounded border-2 bg-white ${selectedImage === index ? 'border-blue-500' : 'border-gray-200'
                                                 }`}
                                         >
                                             <img
@@ -67,7 +67,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }) => {
                                 <h2 className="text-2xl font-bold text-gray-900">{product.name}</h2>
                                 <button
                                     onClick={onClose}
-                                    className="text-gray-400 hover:text-gray-600"
+                                    className="bg-white text-gray-400 hover:text-gray-600 border-1 border-gray-200"
                                 >
                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -91,7 +91,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }) => {
                                 <select
                                     value={quantity}
                                     onChange={(e) => setQuantity(Number(e.target.value))}
-                                    className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="border bg-white border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 >
                                     {[...Array(10)].map((_, i) => (
                                         <option key={i + 1} value={i + 1}>

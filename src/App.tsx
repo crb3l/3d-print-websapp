@@ -1,10 +1,11 @@
 
 import { /*BrowserRouter*/ HashRouter as Router, Routes, Route } from 'react-router-dom';
-import { LandingPage, PrintService, Contact, About, Terms, Privacy, Materials, Signup, Signin, ForgotPassword, ResetPassword, Account, PrintCheckout } from './pages/export';
+import { LandingPage, PrintService, Contact, About, Terms, Privacy, Materials, Signup, Signin, ForgotPassword, ResetPassword, Account, PrintCheckout, PrintCart } from './pages/export';
 // import ShopRedirect from './backend/api/shopCall';
 // import ProtectedRoute from "@/components/protectedroute"; TODO use when you need to signin to access
 import { createClient } from "@supabase/supabase-js";
 import { SessionContextProvider } from "@supabase/auth-helpers-react";
+import ProductGrid from './components/catalog/productGrid';
 
 
 import Footer from '@/components/footer';
@@ -25,10 +26,9 @@ const Page = styled.div`
   // padding: 2rem;
 `;
 // TODO list
-// [ ] pagina detalii/checkout
-// [ ] cart
+// [x] pagina detalii/checkout
+// [x] cart
 // [ ] sign in / register pe checkout
-// [ ] carut
 // [ ] ecommerce
 
 const App = () => {
@@ -53,14 +53,14 @@ const App = () => {
                 {<Route path="/about" element={<About />} />}
                 {<Route path="/privacy-policy" element={<Privacy />} />}
                 {<Route path="/terms-of-service" element={<Terms />} />}
-                {/*<Route path="/shop" element={<ShopRedirect />} />*/}
+                <Route path="/shop" element={<ProductGrid />} />
                 {<Route path="/signin" element={<Signin />} />}
                 {<Route path="/signup" element={<Signup />} />}
                 {<Route path="/account" element={<Account />} />}
                 {<Route path="/forgot-password" element={<ForgotPassword />} />}
                 {<Route path="/reset-password" element={<ResetPassword />} />}
-                {/* {<Route path="/print-cart" element={<PrintCartPage />} />}*/
-                  <Route path="/print-checkout" element={<PrintCheckout />} />}
+                {<Route path="/cart" element={<PrintCart />} />}
+                {/* {<Route path="/print-checkout" element={<PrintCheckout />} />} */}
               </Routes>
             </main>
             <Footer />
