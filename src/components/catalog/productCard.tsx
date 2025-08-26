@@ -1,8 +1,8 @@
 import React from 'react';
 import { Product } from '../../utils/products';
 import { useCart } from '../../hooks/useCart';
-import { Link } from 'react-router-dom';
-import ProductDetail from './productDetail';
+// import { Link } from 'react-router-dom';
+// import ProductDetail from './productDetail';
 
 interface ProductCardProps {
     product: Product;

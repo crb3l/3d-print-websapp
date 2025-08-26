@@ -1,35 +1,11 @@
-import React, { useState } from 'react';
 import { useCart } from '../../hooks/useCart';
+import { useCheckout } from "@/hooks/useCheckout";
 import CartItem from './cartItem';
 import { Link } from 'react-router-dom';
 
 const Cart: React.FC = () => {
     const { items, getTotalPrice, clearCart } = useCart();
-    const [isCheckingOut, setIsCheckingOut] = useState(false);
-
-    const handleCheckout = async () => {
-        setIsCheckingOut(true);
-
-        try {
-            // Call your backend API to create Stripe checkout session
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/checkout/create-checkout-session`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ items }),
-            });
-
-            const { url } = await response.json();
-
-            if (url) {
-                window.location.href = url;
-            }
-        } catch (error) {
-            console.error('Checkout failed:', error);
-            setIsCheckingOut(false);
-        }
-    };
+    const { handleCheckout, isCheckingOut } = useCheckout();
 
     if (items.length === 0) {
         return (
@@ -79,7 +55,7 @@ const Cart: React.FC = () => {
                     </div>
 
                     <button
-                        onClick={handleCheckout}
+                        onClick={() => { handleCheckout(items); console.log(isCheckingOut.toString()) }}
                         disabled={isCheckingOut}
                         className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold py-3 px-6 rounded-md transition-colors duration-200"
                     >
